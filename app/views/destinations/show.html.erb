@@ -1,0 +1,20 @@
+
+<h1><%= @destination.name %>, <%= @destination.country %> </h1>
+<% if !@destination.posts.empty? %>
+<p>Recent posts:</p>
+<ul>  <% @destination.posts.last(10).each do |p| %>
+    <li> <%= link_to p.title, post_path(p) %> </li>
+<% end %>
+</ul>
+<% end %>
+<br>
+<% if !@destination.posts.empty? %>
+<p>
+<% posts_with_likes = @destination.posts.select {|p| p.likes != nil} %>
+<% most_liked_post = posts_with_likes.max_by {|p| p.likes} %>
+Most liked Post: 
+<%= link_to most_liked_post.title, post_path(most_liked_post) %>
+</p>
+<% end %>
+
+<p> Average age of bloggers: <%= @destination.bloggers_average_age %> </p>

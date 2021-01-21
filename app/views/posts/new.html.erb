@@ -1,0 +1,37 @@
+<% if @post.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@post.errors.count, "error") %>
+      prohibited this post from being saved:
+    </h2>
+
+    <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %> 
+
+
+<h1>Create a New Post</h1>
+<%= form_for @post do |f| %> 
+    <%= f.label "Title" %> 
+    <%= f.text_field :title %>
+    <br>
+    <br>
+    <%= f.label "Content" %> 
+    <%= f.text_area :content %>
+    <br>
+    <br>
+    <%= f.label "Desintation" %>
+    <%= f.collection_select :destination_id, Destination.all, :id, :name %> 
+    <br>
+    <br>
+    <%= f.label "Blogger" %>
+    <%= f.collection_select :blogger_id, Blogger.all, :id, :name %> 
+    <br>
+    <br>
+
+<%= f.submit %>
+<% end %>
