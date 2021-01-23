@@ -3,6 +3,10 @@ class Post < ApplicationRecord
     belongs_to :blogger
 
     validates :content, length: {minimum: 100}
-    validates :title, presence: true 
+    validates :title, presence: true
+
+
+
+
 
 end
